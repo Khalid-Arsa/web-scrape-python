@@ -23,25 +23,26 @@ def parse_and_extract(url, name):
     r_html = HTML(html=result)  # data parsing
     r_table = r_html.find("#table")
 
+    # before you debugging the html, disable the javascript first
+
     table_data = []
     if len(r_table) == 0:
         return False
+      
     parse_table = r_table[0]
-    print(r_html)
-
     rows = parse_table.find("tr")
     header_rows = rows[0]
     header_cols = header_rows.find("th")
     header_names = [x.text for x in header_cols]
+        
     for row in rows[1:]:
         cols = row.find("td")
         row_data = {}
         for i, col in enumerate(cols):
             header_name = header_names[i]
             row_data[header_name] = col.text
-
         table_data.append(row_data)
-
+        
     df = pd.DataFrame(table_data)
     folder_path = os.path.join(BASE_DIRS, "data")
     os.makedirs(folder_path, exist_ok=True)
@@ -69,7 +70,6 @@ def run_date(start_year=None, end_year=0):
             print(f"{start_year} is not finished")
 
         start_year -= 1
-
 
 if __name__ == "__main__":
     try:
