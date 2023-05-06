@@ -6,7 +6,7 @@ helper = Helper()
 class URLCall():
   "Class for report scrape url"
 
-  def get_reports():
+  def get_reports(self):
     year = helper.year_date()
     
     if year == None:
