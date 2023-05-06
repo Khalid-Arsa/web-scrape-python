@@ -8,7 +8,6 @@ from helper import *
 from urlCall import *
 
 helper = Helper()
-urlCall = URLCall()
 
 BASE_DIRS = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,8 +17,8 @@ class ScrapingReport:
     def __init__(self):
         self.url_call = URLCall()
 
-    def parse_and_extract():
-        result = helper.url_to_text(url)
+    def parse_and_extract(self):
+        result = helper.url_to_text(self.url_call.get_reports())
         year = helper.year_date()
         if result == None:
             return False
@@ -54,7 +53,7 @@ class ScrapingReport:
         for i in range(0, COUNT_YEAR+1):
             finished = df.to_csv(filename_path, index=False)
 
-            if finished:
+            if not finished:
                 print(f"Finished {year}")
             else:
                 print(f"{year} is not finished")
