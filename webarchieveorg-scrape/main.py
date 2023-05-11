@@ -15,13 +15,13 @@ class ScrapingReport:
         for i in range(1, 5):
             url = f'https://web.archive.org/web/20121007172955/https://www.nga.gov/collection/anZ{str(i)}.htm'
             pages.append(url)
-        
+
         for item in pages:
             headers = {
-              'User-Agent': 'Khalid Arsa',
-              'From': 'sanggoyodk8@gmail.com'
+                'User-Agent': 'Khalid Arsa',
+                'From': 'sanggoyodk8@gmail.com'
             }
-            
+
             page = requests.get(item, headers=headers)
 
             # Create a BeautifulSoup object
